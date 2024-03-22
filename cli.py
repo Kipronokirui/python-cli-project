@@ -14,14 +14,17 @@ def tablecreation():
     print("Transactions Table Creation finished")
 
 def getAllUsers():
-    arrayData = User.queryAll(cursor, CONN)
-    for user in arrayData:
-        print(f'''
-    Name: {user[1]}
-    Phone Number: {user[2]}
-    Account Balance: {user[3]}
-    ***************
-        ''')
+    usersData = User.queryAll(cursor, CONN)
+    if len(usersData) > 0:
+        for user in usersData:
+            print(f'''
+        Name: {user[1]}
+        Phone Number: {user[2]}
+        Account Balance: {user[3]}
+        ***************
+            ''')
+    else:
+        print("There are no users in the database")
 
 def createUser():
     while True:
@@ -78,14 +81,17 @@ def sendMoney():
 
     
 def getAllTransactions():
-    arrayData = Transaction.queryAll(cursor, CONN)
-    for transaction in arrayData:
-        print(f'''
-            Sender: {transaction[1]}
-            Receiver: {transaction[2]}
-            Amount: {transaction[3]}
-            *************
-        ''')
+    transactionsData = Transaction.queryAll(cursor, CONN)
+    if len(transactionsData) > 0:
+        for transaction in transactionsData:
+            print(f'''
+                Sender: {transaction[1]}
+                Receiver: {transaction[2]}
+                Amount: {transaction[3]}
+                *************
+            ''')
+    else:
+        print("There are no transactions")
 
 def getAllUserTransactions():
     yourNumber = input("Enter Your Phone Number: ")
